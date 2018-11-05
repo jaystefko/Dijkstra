@@ -15,12 +15,10 @@ const verticsWeight = (start, end, graph) => {
   for (v in graph) {
     if (v in graph[start]) {
       weights = { ...weights, [v]: graph[start][v] }
-      console.log('pieseł', graph[start][v])
     } else if ( v !== start && v !== end ) {
       weights = { ...weights, [v]: null }
     }
   }
-  console.log(weights)
   return weights
 }
 
@@ -34,31 +32,25 @@ const parentVertics = (start, verticsWeight) => {
   return parentVertics
 }
 
-// const lowestCostNode = (costs, processed) => {
-//   return Object.keys(costs).reduce((lowest, node) => {
-//     if (lowest === null || costs[node] < costs[lowest]) {
-//       if (!processed.includes(node)) { lowest = node }
-//     }
-//     return lowest
-//   }, null)
-// }
-
 // meat and potatoes
 const shortestPath = (start, end, graph) => {
   let weights = verticsWeight( start, end, graph )
-  console.log({ s: start, e: end, weights: weights, graph })
-  let parents = parentVertics( 'S', weights )
+  let parents = parentVertics( start, {...weights} )
   for (v in graph) {
     if (v !== start) {
       for (edge in graph[v]) {
-        // console.log('sowa', v, graph[v], edge, [edge], graph[v][edge], weights)
-        console.log('sowa', { v: v, edge: edge, weights_v: weights[v], weights_ve: weights[edge] }, '\n')
-        // v === 'B'
-        // edge === 'A'
-        // if (weights[edge] === null || weights[edge] > (weights[v] + graph[v][edge])) {
-        //   parents[edge] = v
-        //   weights[edge]= weights[v] + graph[v][edge]
-        // }
+        if (weights[edge] === null || weights[edge] > (weights[v] + graph[v][edge])) {
+          parents = { ...parents, [edge]: v }
+          weights= { ...weights, [edge]: weights[v] + graph[v][edge] }
+          // if (weights[edge] > (weights[v] + graph[v][edge])) {
+            console.log('here am i!', {edge, v, parents, weights})
+            for (w in parents) {
+              if (parents[w] === edge && parents[w] !== start) {
+                weights = { ...weights, [w]: weights[edge] + graph[edge][w] }
+              }
+            }
+          // }
+        }
       }
     }
   }
@@ -66,10 +58,6 @@ const shortestPath = (start, end, graph) => {
 }
 
 const main = () => {
-  let weights = verticsWeight( 'S', 'E', graph )
-  console.log(weights)
-  let parents = parentVertics('S', weights)
-  console.log(parents)
   let v = shortestPath( 'S','E', graph )
   console.log(v)
 }
