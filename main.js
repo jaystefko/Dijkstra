@@ -42,14 +42,11 @@ const shortestPath = (start, end, graph) => {
         if (weights[edge] === null || weights[edge] > (weights[v] + graph[v][edge])) {
           parents = { ...parents, [edge]: v }
           weights= { ...weights, [edge]: weights[v] + graph[v][edge] }
-          // if (weights[edge] > (weights[v] + graph[v][edge])) {
-            console.log('here am i!', {edge, v, parents, weights})
-            for (w in parents) {
-              if (parents[w] === edge && parents[w] !== start) {
-                weights = { ...weights, [w]: weights[edge] + graph[edge][w] }
-              }
+          for (w in parents) {
+            if (parents[w] === edge && parents[w] !== start) {
+              weights = { ...weights, [w]: weights[edge] + graph[edge][w] }
             }
-          // }
+          }
         }
       }
     }
