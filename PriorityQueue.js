@@ -2,7 +2,6 @@ import Element from './Element'
 
 export default class PriorityQueue {
   constructor() {
-    super()
     this.items = []
   }
 
@@ -12,8 +11,8 @@ export default class PriorityQueue {
     let contain = false
 
     while ((!contain) && (i < this.items.length)) {
-      if (v.priority < this.items[i].priority) {
-        this.list.splice(i, 0, v)
+      if (v.priority > this.items[i].priority) {
+        this.items.splice(i, 0, v)
         contain = true
         break
       } else { i++ }
@@ -24,7 +23,7 @@ export default class PriorityQueue {
   }
 
   delete () {
-    if (this.isEmpty()) { return 'Underflow' }
+    if (this.isEmpty()) { return 'Underflow!' }
       else { return this.items.shift() }
   }
 

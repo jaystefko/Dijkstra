@@ -1,4 +1,56 @@
-import PriorityQueue from './PriorityQueue'
+class PriorityQueue {
+  constructor() {
+    this.items = []
+  }
+
+  add (element, priority) {
+    let v = new Element(element, priority)
+    let i = 0
+    let contain = false
+
+    while ((!contain) && (i < this.items.length)) {
+      if (v.priority > this.items[i].priority) {
+        this.items.splice(i, 0, v)
+        contain = true
+        break
+      } else { i++ }
+    }
+    if (!contain) {
+      this.items.push(v)
+    }
+  }
+
+  delete () {
+    if (this.isEmpty()) { return 'Underflow!' }
+      else { return this.items.shift() }
+  }
+
+  isEmpty () { return this.items.length === 0 }
+
+  head () {
+    if (this.isEmpty()) { return 'Queue have no elements!' }
+      else { return this.items[0] }
+  }
+
+  tail () {
+    if (this.isEmpty()) { return 'Queue have no elements!' }
+      else { return this.items[this.items.length -1] }
+  }
+
+  showItems () {
+    if (this.isEmpty()) { return 'Queue have no elements!' }
+      else { return this.items }
+  }
+}
+
+class Element {
+  constructor(element, priority) {
+    this.element = element,
+    this.priority = priority
+  }
+}
+
+// ----------------------------- stupid pasting ^^^
 
 // example of directed graph, vertics and edges pointing from them with weight
 const graph = {
@@ -56,8 +108,17 @@ const shortestPath = (start, end, graph) => {
   return { a: weights, b: parents}
 }
 
-const main = () => {
+startButton = document.getElementById('start')
+startButton.addEventListener('click', () => {
   priorityQueue = new PriorityQueue()
   priorityQueue.add('Dog', 3)
-  priorityQueue.head()
-}
+  priorityQueue.add('Cat', 1)
+  priorityQueue.add('Crocodile', 2)
+  console.log('head', priorityQueue.head())
+  console.log('tail', priorityQueue.tail())
+  console.log('all', priorityQueue.showItems())
+  console.log('delete', priorityQueue.delete())
+  console.log('delete', priorityQueue.delete())
+  console.log('delete', priorityQueue.delete())
+  console.log('delete', priorityQueue.delete())
+})
