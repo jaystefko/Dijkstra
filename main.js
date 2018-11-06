@@ -1,3 +1,5 @@
+import PriorityQueue from './PriorityQueue'
+
 // example of directed graph, vertics and edges pointing from them with weight
 const graph = {
   S: { A: 6, B: 4 },
@@ -55,6 +57,7 @@ const shortestPath = (start, end, graph) => {
 }
 
 const main = () => {
-  let v = shortestPath( 'S','E', graph )
-  console.log(v)
+  priorityQueue = new PriorityQueue()
+  priorityQueue.add('Dog', 3)
+  priorityQueue.head()
 }
