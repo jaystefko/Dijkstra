@@ -1,4 +1,4 @@
-import PriorityQueue from './PriorityQueue'
+import * as PriorityQueue from './PriorityQueue'
 
 // example of directed graph, vertics and edges pointing from them with weight
 const graph = {
