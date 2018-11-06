@@ -123,4 +123,6 @@ startButton.addEventListener('click', () => {
   console.log('delete', priorityQueue.delete())
   console.log('delete', priorityQueue.delete())
   console.log('delete', priorityQueue.delete())
+  let v = shortestPath('S', 'E', graph)
+  console.log(v)
 })
