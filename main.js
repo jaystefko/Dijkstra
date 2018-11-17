@@ -34,12 +34,31 @@ const shortestPath = (start, end, graph) => {
         weights = {...weights, [route]: weights[v.element] + graph[v.element][route]}
       }
     }
+    path.push(v)
+    // if (queue.tail().priority >)
   } while (v.element !== end && v !== 'Underflow!')
+  // v = algorithmPath[algorithmPath.length - 1]
+  // do {
+
+  // } while (v.element !== start && v.parent !== start)
   return path
 }
 
 startButton = document.getElementById('start')
 startButton.addEventListener('click', () => {
-  let path = shortestPath('S', 'E', graph)
-  console.log(path)
+  let algorithmPath = shortestPath('S', 'E', graph)
+  // let score = {}
+  // let v = algorithmPath[algorithmPath.length - 1]
+  // do {
+  //   path.forEach(element => {
+  //     if (v.parent === element.element) {
+  //       if (typeof score[element.element] === 'undefined') {
+  //         score = {...score, [v.element]: [v.priority]}
+  //          = 
+  //       }
+  //       else if (score[v.element]) {  }
+  //     }
+  //   })
+  // } while (v.element !== 'S' && v.parent !== 'S')
+  console.log(algorithmPath)
 })
